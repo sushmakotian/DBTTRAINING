@@ -1,8 +1,5 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
+{{ config(materialized="table") }}
 
 
-select * from {{ source("stripe", "payment") }}
+select id, orderid, paymentmethod, status, amount, created, _batched_at
+from {{ source("stripe", "payment") }}
